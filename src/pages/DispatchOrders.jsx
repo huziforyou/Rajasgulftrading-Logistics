@@ -1942,7 +1942,7 @@ const DispatchOrders = () => {
           return;
         }
         
-        const columns = ['DN#', 'Client', 'Vendor', 'Route', 'Status', 'Qty', 'Date'];
+        const columns = ['DN#', 'Client', 'Vendor', 'Route', 'Status', 'Qty', 'Delivered At'];
         const tableRows = dataToPrint.map(o => [
           o.deliveryNoteNumber,
           o.customerName || 'N/A',
@@ -1950,10 +1950,12 @@ const DispatchOrders = () => {
           `${o.loadingFrom} to ${o.offloadingTo}`,
           o.status,
           o.materialQuantity || '0',
-          new Date(o.createdAt).toLocaleDateString()
+          o.status === 'Delivered' 
+            ? `${o.deliveredDate ? new Date(o.deliveredDate).toLocaleDateString() : 'N/A'} ${o.deliveredTime || ''}`
+            : 'Pending'
         ]);
 
-        await generatePDFReport(`Dispatch Report (${filterType.toUpperCase()})`, columns, tableRows, filename);
+        await generatePDFReport(`Dispatch Report (${filterType.toUpperCase()}) - Generated: ${new Date().toLocaleDateString()}`, columns, tableRows, filename);
       }
     } catch (error) {
       console.error("PDF Generation Error:", error);

@@ -169,7 +169,8 @@ export const generateDispatchOrderPDF = async (order, filename) => {
 
   const fields = [
     [formatArabicText("Order ID (DN):"), formatArabicText(order.deliveryNoteNumber || 'N/A')],
-    [formatArabicText("Date:"), formatArabicText(order.createdAt ? new Date(order.createdAt).toLocaleDateString() : new Date().toLocaleDateString())],
+    [formatArabicText("Generated On:"), formatArabicText(new Date().toLocaleDateString())],
+    [formatArabicText("Loading Date:"), formatArabicText(order.loadingDate ? new Date(order.loadingDate).toLocaleDateString() : 'N/A')],
     [formatArabicText("Driver Name:"), formatArabicText(order.assignedDriver?.name || 'N/A')],
     [formatArabicText("Vehicle Number:"), formatArabicText(order.vehiclePlateNumber || 'N/A')],
     [formatArabicText("Vendor Name:"), formatArabicText(order.assignedVendor?.name || 'N/A')],
@@ -215,6 +216,8 @@ export const generateDetailedDispatchOrderPDF = async (order, filename) => {
 
   const details = [
     [formatArabicText("Order ID (DN):"), formatArabicText(order.deliveryNoteNumber || 'N/A')],
+    [formatArabicText("Generated On:"), formatArabicText(new Date().toLocaleDateString())],
+    [formatArabicText("Loading Date:"), formatArabicText(order.loadingDate ? new Date(order.loadingDate).toLocaleDateString() : 'N/A')],
     [formatArabicText("Client Name:"), formatArabicText(order.customerName || 'N/A')],
     [formatArabicText("Vendor Name:"), formatArabicText(order.assignedVendor?.name || 'N/A')],
     [formatArabicText("Material:"), formatArabicText(order.materialDescription || 'N/A')],

@@ -140,19 +140,20 @@ const Reports = () => {
       const res = await api.get('/dispatch');
       const orders = filterDataByDate(res.data.data);
       
-      const columns = ['DN Number', 'Vendor', 'Driver', 'Material', 'Loading', 'Offloading', 'Status', 'Date'];
+      const columns = ['DN Number', 'Vendor', 'Driver', 'Material', 'Route', 'Status', 'Delivered At'];
       const data = orders.map(o => [
         o.deliveryNoteNumber,
         o.assignedVendor?.name || 'N/A',
         o.assignedDriver?.name || 'N/A',
         o.materialQuantity,
-        o.loadingFrom,
-        o.offloadingTo,
+        `${o.loadingFrom} to ${o.offloadingTo}`,
         o.status,
-        new Date(o.createdAt).toLocaleDateString()
+        o.status === 'Delivered' 
+          ? `${o.deliveredDate ? new Date(o.deliveredDate).toLocaleDateString() : 'N/A'} ${o.deliveredTime || ''}`
+          : 'Pending'
       ]);
 
-      await generatePDFReport("Dispatch Volume Report", columns, data, `Dispatch_Report_${filterType}.pdf`);
+      await generatePDFReport(`Dispatch Volume Report - Generated: ${new Date().toLocaleDateString()}`, columns, data, `Dispatch_Report_${filterType}.pdf`);
     } catch (error) {
       console.error(error);
       alert("Failed to generate report");
