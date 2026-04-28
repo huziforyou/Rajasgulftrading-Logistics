@@ -89,12 +89,11 @@ const Reports = () => {
       const res = await api.get('/vendors');
       const vendors = filterDataByDate(res.data.data);
       
-      const columns = ['Vendor Name', 'Contact Person', 'Phone', 'VAT Number', 'Status', 'Created At'];
+      const columns = ['Vendor', 'Contact', 'Phone', 'Status', 'Date'];
       const data = vendors.map(v => [
         v.name,
         v.contactPerson || 'N/A',
         v.phone || 'N/A',
-        v.vatNumber || 'N/A',
         v.status || 'Active',
         new Date(v.createdAt).toLocaleDateString()
       ]);
@@ -114,15 +113,13 @@ const Reports = () => {
       const res = await api.get('/drivers');
       const drivers = filterDataByDate(res.data.data);
       
-      const columns = ['Driver Name', 'Iqama Number', 'Phone', 'Vendor', 'Plate Number', 'Status', 'Created At'];
+      const columns = ['Driver', 'Iqama', 'Phone', 'Vendor', 'Status'];
       const data = drivers.map(d => [
         d.name,
         d.iqamaNumber,
         d.phone,
         d.vendor?.name || 'N/A',
-        d.vehiclePlateNumber || 'N/A',
-        d.status || 'Active',
-        new Date(d.createdAt).toLocaleDateString()
+        d.status || 'Active'
       ]);
 
       await generatePDFReport("Driver Trip Report", columns, data, `Driver_Report_${filterType}.pdf`);
@@ -140,17 +137,14 @@ const Reports = () => {
       const res = await api.get('/dispatch');
       const orders = filterDataByDate(res.data.data);
       
-      const columns = ['DN Number', 'Vendor', 'Driver', 'Material', 'Route', 'Status', 'Delivered At'];
+      const columns = ['DN#', 'Vendor', 'Driver', 'Qty', 'Route', 'Status'];
       const data = orders.map(o => [
         o.deliveryNoteNumber,
         o.assignedVendor?.name || 'N/A',
         o.assignedDriver?.name || 'N/A',
         o.materialQuantity,
-        `${o.loadingFrom} to ${o.offloadingTo}`,
-        o.status,
-        o.status === 'Delivered' 
-          ? `${o.deliveredDate ? new Date(o.deliveredDate).toLocaleDateString() : 'N/A'} ${o.deliveredTime || ''}`
-          : 'Pending'
+        `${o.loadingFrom} - ${o.offloadingTo}`,
+        o.status
       ]);
 
       await generatePDFReport(`Dispatch Volume Report - Generated: ${new Date().toLocaleDateString()}`, columns, data, `Dispatch_Report_${filterType}.pdf`);
@@ -169,13 +163,12 @@ const Reports = () => {
       const filteredOrders = filterDataByDate(res.data.data);
       const orders = filteredOrders.filter(o => o.status !== 'Delivered');
       
-      const columns = ['DN Number', 'Vendor', 'Status', 'Loading From', 'Offloading To', 'Created At'];
+      const columns = ['DN#', 'Vendor', 'Status', 'Route', 'Date'];
       const data = orders.map(o => [
         o.deliveryNoteNumber,
         o.assignedVendor?.name || 'N/A',
         o.status,
-        o.loadingFrom,
-        o.offloadingTo,
+        `${o.loadingFrom} - ${o.offloadingTo}`,
         new Date(o.createdAt).toLocaleDateString()
       ]);
 

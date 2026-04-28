@@ -141,12 +141,20 @@ export const generatePDFReport = async (title, columns, data, filename) => {
       fontStyle: 'bold'
     },
     styles: { 
-      fontSize: 9, 
-      cellPadding: 3, 
+      fontSize: 8, 
+      cellPadding: 2, 
       font: "Amiri",
-      fontStyle: 'normal'
+      fontStyle: 'normal',
+      valign: 'middle',
+      halign: 'center',
+      overflow: 'linebreak',
+      lineColor: [240, 240, 240],
+      lineWidth: 0.1
     },
-    margin: { bottom: 30 }
+    alternateRowStyles: {
+      fillColor: [250, 250, 250]
+    },
+    margin: { top: 70, bottom: 30, left: 14, right: 14 }
   });
 
   const pdfBytes = await applyTemplate(doc);
