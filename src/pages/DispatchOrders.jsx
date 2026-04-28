@@ -1942,14 +1942,17 @@ const DispatchOrders = () => {
           return;
         }
         
-        const columns = ['DN#', 'Client', 'Vendor', 'Route', 'Qty', 'Status'];
+        const columns = ['DN#', 'Client', 'Vendor', 'Route', 'Status', 'Qty', 'Delivered At'];
         const tableRows = dataToPrint.map(o => [
           o.deliveryNoteNumber,
           o.customerName || 'N/A',
           o.assignedVendor?.name || 'N/A',
-          `${o.loadingFrom} - ${o.offloadingTo}`,
+          `${o.loadingFrom} to ${o.offloadingTo}`,
+          o.status,
           o.materialQuantity || '0',
-          o.status
+          o.status === 'Delivered' 
+            ? `${o.deliveredDate ? new Date(o.deliveredDate).toLocaleDateString() : 'N/A'} ${o.deliveredTime || ''}`
+            : 'Pending'
         ]);
 
         await generatePDFReport(`Dispatch Report (${filterType.toUpperCase()}) - Generated: ${new Date().toLocaleDateString()}`, columns, tableRows, filename);

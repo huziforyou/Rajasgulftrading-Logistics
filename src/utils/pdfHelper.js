@@ -132,29 +132,24 @@ export const generatePDFReport = async (title, columns, data, filename) => {
     startY: startY,
     head: [formattedColumns],
     body: formattedData,
-    theme: 'striped',
+    theme: 'plain',
     headStyles: { 
-      fillColor: [0, 51, 102], 
-      textColor: [255, 255, 255], 
+      fillColor: false, 
+      textColor: [0, 51, 102], 
       fontSize: 10, 
       font: "Amiri",
-      fontStyle: 'bold'
+      fontStyle: 'bold',
+      halign: 'center'
     },
     styles: { 
-      fontSize: 8, 
-      cellPadding: 2, 
+      fontSize: 9, 
+      cellPadding: 3, 
       font: "Amiri",
       fontStyle: 'normal',
-      valign: 'middle',
       halign: 'center',
-      overflow: 'linebreak',
-      lineColor: [240, 240, 240],
-      lineWidth: 0.1
+      fillColor: false
     },
-    alternateRowStyles: {
-      fillColor: [250, 250, 250]
-    },
-    margin: { top: 70, bottom: 30, left: 14, right: 14 }
+    margin: { bottom: 30 }
   });
 
   const pdfBytes = await applyTemplate(doc);
@@ -195,11 +190,12 @@ export const generateDispatchOrderPDF = async (order, filename) => {
       cellPadding: 4, 
       textColor: [40, 40, 40], 
       font: "Amiri",
-      fontStyle: 'normal'
+      fontStyle: 'normal',
+      fillColor: false
     },
     columnStyles: {
-      0: { fontStyle: 'bold', cellWidth: 50, font: "Amiri" },
-      1: { fontStyle: 'normal', font: "Amiri" }
+      0: { fontStyle: 'bold', cellWidth: 50, font: "Amiri", halign: 'left' },
+      1: { fontStyle: 'normal', font: "Amiri", halign: 'left' }
     }
   });
 
@@ -256,10 +252,12 @@ export const generateDetailedDispatchOrderPDF = async (order, filename) => {
       cellPadding: 3, 
       textColor: [40, 40, 40], 
       font: "Amiri",
-      fontStyle: 'normal'
+      fontStyle: 'normal',
+      fillColor: false
     },
     columnStyles: { 
-      0: { fontStyle: 'bold', cellWidth: 45, font: "Amiri" } 
+      0: { fontStyle: 'bold', cellWidth: 45, font: "Amiri", halign: 'left' },
+      1: { fontStyle: 'normal', font: "Amiri", halign: 'left' }
     }
   });
 
