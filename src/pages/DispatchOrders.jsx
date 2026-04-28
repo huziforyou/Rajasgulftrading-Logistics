@@ -1533,7 +1533,7 @@ const DispatchOrders = () => {
   const [isDeliveryModalOpen, setIsDeliveryModalOpen] = useState(false);
   const [isOutForDeliveryModalOpen, setIsOutForDeliveryModalOpen] = useState(false);
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
-  const [isUploading, setIsUpdating] = useState(false);
+  const [isUpdating, setIsUpdating] = useState(false);
   const [isBulkUploading, setIsBulkUploading] = useState(false);
   const [uploadResult, setUploadResult] = useState(null);
   const [isEditingDelivery, setIsEditingDelivery] = useState(false);
