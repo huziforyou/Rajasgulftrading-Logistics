@@ -140,16 +140,19 @@ const Reports = () => {
       const res = await api.get('/dispatch');
       const orders = filterDataByDate(res.data.data, 'loadingDate');
       
-      const columns = ['DN Number', 'Transporter', 'Driver', 'Material', 'Loading', 'Offloading', 'Status', 'Date'];
+      const columns = ['DN Number', 'Transporter', 'Driver', 'Material', 'Qty', 'Loading', 'Offloading', 'Status', 'Delivered At'];
       const data = orders.map(o => [
         o.deliveryNoteNumber,
         o.assignedVendor?.name || 'N/A',
         o.assignedDriver?.name || 'N/A',
-        o.materialQuantity,
+        o.materialDescription || 'N/A',
+        o.materialQuantity || '0',
         o.loadingFrom,
         o.offloadingTo,
         o.status,
-        new Date(o.createdAt).toLocaleDateString()
+        o.status === 'Delivered' 
+          ? `${o.deliveredDate ? new Date(o.deliveredDate).toLocaleDateString() : 'N/A'} ${o.deliveredTime || ''}`
+          : 'Pending'
       ]);
 
       await generatePDFReport(`Dispatch Report - Generated: ${new Date().toLocaleDateString()}`, columns, data, `Dispatch_Report_${filterType}.pdf`);
