@@ -56,7 +56,7 @@ const Reports = () => {
     if (filterType === 'all') return data;
     
     const filtered = data.filter(item => {
-      const itemDate = new Date(item[dateField]);
+      const itemDate = new Date(item[dateField] || item.createdAt);
       if (isNaN(itemDate.getTime())) return true; // Fallback for invalid dates
 
       if (filterType === 'range') {
@@ -138,7 +138,7 @@ const Reports = () => {
     try {
       setLoadingReport('dispatch');
       const res = await api.get('/dispatch');
-      const orders = filterDataByDate(res.data.data);
+      const orders = filterDataByDate(res.data.data, 'loadingDate');
       
       const columns = ['DN Number', 'Vendor', 'Driver', 'Material', 'Loading', 'Offloading', 'Status', 'Date'];
       const data = orders.map(o => [
@@ -165,7 +165,7 @@ const Reports = () => {
     try {
       setLoadingReport('delay');
       const res = await api.get('/dispatch');
-      const filteredOrders = filterDataByDate(res.data.data);
+      const filteredOrders = filterDataByDate(res.data.data, 'loadingDate');
       const orders = filteredOrders.filter(o => o.status !== 'Delivered');
       
       const columns = ['DN Number', 'Vendor', 'Status', 'Loading From', 'Offloading To', 'Created At'];

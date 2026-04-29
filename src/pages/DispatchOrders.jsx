@@ -1549,7 +1549,7 @@ const DispatchOrders = () => {
     if (filterType === 'all') return data;
     
     return data.filter(item => {
-      const itemDate = new Date(item.createdAt);
+      const itemDate = new Date(item.loadingDate || item.createdAt);
       if (isNaN(itemDate.getTime())) return true;
 
       if (filterType === 'range') {
