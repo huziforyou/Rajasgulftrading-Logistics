@@ -902,7 +902,6 @@ const DashboardLayout = ({ children }) => {
     { to: '/vendors', icon: Box, label: i18n.language === 'ar' ? 'الناقلين' : 'Transporter', permission: user?.permissions?.viewVendors },
     { to: '/drivers', icon: Truck, label: i18n.language === 'ar' ? 'السائقين' : 'Drivers', permission: user?.permissions?.viewDrivers },
     { to: '/dispatch', icon: ClipboardList, label: i18n.language === 'ar' ? 'أوامر الإرسال' : 'Dispatch Orders', permission: user?.permissions?.viewVendors || user?.permissions?.createDispatch || user?.permissions?.editDispatch },
-    { to: '/vehicles', icon: Layers, label: i18n.language === 'ar' ? 'المركبات' : 'Vehicles', permission: user?.permissions?.viewDrivers },
     { to: '/reports', icon: FileText, label: i18n.language === 'ar' ? 'التقارير' : 'Reports', permission: user?.permissions?.viewReports },
     { to: '/users', icon: Users, label: i18n.language === 'ar' ? 'المستخدمين' : 'Users', permission: user?.role === 'super-admin' || user?.role === 'admin' },
     { to: '/settings', icon: Settings, label: i18n.language === 'ar' ? 'الإعدادات' : 'Settings', permission: true },

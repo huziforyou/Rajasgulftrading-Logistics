@@ -10,7 +10,6 @@ import CreateDispatch from './pages/CreateDispatch';
 import DispatchOrders from './pages/DispatchOrders';
 import Transporters from './pages/Transporters';
 import Drivers from './pages/Drivers';
-import Vehicles from './pages/Vehicles';
 import Users from './pages/Users';
 import Reports from './pages/Reports';
 import Settings from './pages/Settings';
@@ -123,14 +122,6 @@ function App() {
               element={
                 <ProtectedRoute>
                   <Drivers />
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/vehicles" 
-              element={
-                <ProtectedRoute>
-                  <Vehicles />
                 </ProtectedRoute>
               } 
             />
