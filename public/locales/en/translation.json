@@ -1,9 +1,9 @@
 {
-  "app_name": "SMART VENDOR DISPATCH PORTAL",
+  "app_name": "SMART TRANSPORTER DISPATCH PORTAL",
   "dashboard": "Dashboard",
   "upload": "Upload Documents",
   "records": "OCR Records",
-  "vendors": "Vendors",
+  "vendors": "Transporter",
   "drivers": "Drivers",
   "vehicles": "Vehicles",
   "users": "Users & Roles",

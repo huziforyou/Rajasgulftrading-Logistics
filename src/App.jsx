@@ -8,13 +8,12 @@ import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import CreateDispatch from './pages/CreateDispatch';
 import DispatchOrders from './pages/DispatchOrders';
-import Vendors from './pages/Vendors';
+import Transporters from './pages/Transporters';
 import Drivers from './pages/Drivers';
 import Vehicles from './pages/Vehicles';
 import Users from './pages/Users';
 import Reports from './pages/Reports';
 import Settings from './pages/Settings';
-import Inventory from './pages/Inventory';
 import DashboardLayout from './layouts/DashboardLayout';
 
 // const ProtectedRoute = ({ children }) => {
@@ -112,18 +111,10 @@ function App() {
               } 
             />
             <Route 
-              path="/inventory" 
-              element={
-                <ProtectedRoute>
-                  <Inventory />
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
               path="/vendors" 
               element={
                 <ProtectedRoute>
-                  <Vendors />
+                  <Transporters />
                 </ProtectedRoute>
               } 
             />

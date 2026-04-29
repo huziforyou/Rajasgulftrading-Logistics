@@ -381,7 +381,7 @@ const CreateDispatch = () => {
             </motion.div>
           </div>
 
-          {/* Sidebar Area */}
+          {/* Transporter Partner */}
           <div className="lg:col-span-4 space-y-10">
             {/* Logistics Partner */}
             <motion.div 
@@ -396,9 +396,9 @@ const CreateDispatch = () => {
               
               <div className="space-y-6">
                 <div className="space-y-2">
-                  <label className="text-[10px] font-black text-white/50 uppercase tracking-[0.2em] ml-1">Assigned Vendor</label>
+                  <label className="text-[10px] font-black text-white/50 uppercase tracking-[0.2em] ml-1">Assigned Transporter</label>
                   <select {...register('assignedVendor', { required: true })} className="w-full px-5 py-4 bg-white/10 border border-white/20 rounded-2xl text-sm font-bold text-white focus:ring-2 focus:ring-white/50 outline-none appearance-none transition-all">
-                    <option value="" className="text-gray-900">Select Vendor</option>
+                    <option value="" className="text-gray-900">Select Transporter</option>
                     {vendors.map(v => <option key={v._id} value={v._id} className="text-gray-900">{v.name}</option>)}
                   </select>
                 </div>

@@ -1393,7 +1393,7 @@
 //         <Search className="ml-4 text-gray-400" size={20} />
 //         <input 
 //           type="text" 
-//           placeholder={`Search ${activeTab} items...`} 
+//           placeholder={`Search ${activeTab} items by DN, Transporter or Driver...`} 
 //           value={searchTerm}
 //           onChange={(e) => setSearchTerm(e.target.value)}
 //           className="w-full px-4 py-2 bg-transparent border-none focus:ring-0 font-bold dark:text-white"
@@ -1825,7 +1825,7 @@ const DispatchOrders = () => {
       const worksheetData = dataToExport.map(o => ({
         "DN Number": o.deliveryNoteNumber,
         "Client Name": o.customerName || 'N/A',
-        "Vendor Name": o.assignedVendor?.name || 'N/A',
+        "Transporter Name": o.assignedVendor?.name || 'N/A',
         "Material": o.materialDescription || 'N/A',
         "Quantity": o.materialQuantity || '0',
         "Loading From": o.loadingFrom,
@@ -1875,7 +1875,7 @@ const DispatchOrders = () => {
         return;
       }
 
-      const headers = ["DN Number", "Client Name", "Vendor Name", "Material", "Qty", "Route", "Driver", "Vehicle Plate", "Status", "Created Date", "Out For Delivery Time", "Delivered Date", "Delivered Time", "Received Qty", "Qty Status", "Qty Difference", "Notes"];
+      const headers = ["DN Number", "Client Name", "Transporter Name", "Material", "Qty", "Route", "Driver", "Vehicle Plate", "Status", "Created Date", "Out For Delivery Time", "Delivered Date", "Delivered Time", "Received Qty", "Qty Status", "Qty Difference", "Notes"];
       
       const rows = dataToExport.map(o => [
         o.deliveryNoteNumber,
@@ -1942,7 +1942,7 @@ const DispatchOrders = () => {
           return;
         }
         
-        const columns = ['DN#', 'Client', 'Vendor', 'Route', 'Status', 'Qty', 'Delivered At'];
+        const columns = ['DN#', 'Client', 'Transporter', 'Route', 'Status', 'Qty', 'Delivered At'];
         const tableRows = dataToPrint.map(o => [
           o.deliveryNoteNumber,
           o.customerName || 'N/A',
@@ -2097,7 +2097,7 @@ const DispatchOrders = () => {
         <Search className="ml-2 md:ml-4 text-gray-400" size={18} />
         <input 
           type="text" 
-          placeholder={`Search ${activeTab} orders...`} 
+          placeholder={`Search ${activeTab} orders by DN, Transporter or Driver...`} 
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="w-full px-3 md:px-4 py-2 bg-transparent border-none focus:ring-0 font-bold text-xs md:text-sm text-gray-700 dark:text-white placeholder:text-gray-400"
@@ -2111,7 +2111,7 @@ const DispatchOrders = () => {
             <thead className="bg-gray-50/50 dark:bg-gray-800/50">
               <tr className="text-[9px] md:text-[10px] font-black text-gray-400 uppercase tracking-widest border-b border-gray-50 dark:border-gray-800">
                 <th className="p-4 md:p-6">Delivery Note</th>
-                <th className="p-4 md:p-6">Partner Details</th>
+                <th className="p-4 md:p-6">Transporter Details</th>
                 <th className="p-4 md:p-6 hidden sm:table-cell">Status</th>
                 <th className="p-4 md:p-6 text-right">Action</th>
               </tr>

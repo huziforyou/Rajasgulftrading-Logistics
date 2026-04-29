@@ -89,7 +89,7 @@ const Reports = () => {
       const res = await api.get('/vendors');
       const vendors = filterDataByDate(res.data.data);
       
-      const columns = ['Vendor Name', 'Contact Person', 'Phone', 'VAT Number', 'Status', 'Created At'];
+      const columns = ['Transporter Name', 'Contact Person', 'Phone', 'VAT Number', 'Status', 'Created At'];
       const data = vendors.map(v => [
         v.name,
         v.contactPerson || 'N/A',
@@ -99,7 +99,7 @@ const Reports = () => {
         new Date(v.createdAt).toLocaleDateString()
       ]);
 
-      await generatePDFReport("Vendor Performance Report", columns, data, `Vendor_Report_${filterType}.pdf`);
+      await generatePDFReport("Transporter Performance Report", columns, data, `Transporter_Report_${filterType}.pdf`);
     } catch (error) {
       console.error(error);
       alert("Failed to generate report");
@@ -114,7 +114,7 @@ const Reports = () => {
       const res = await api.get('/drivers');
       const drivers = filterDataByDate(res.data.data);
       
-      const columns = ['Driver Name', 'Iqama Number', 'Phone', 'Vendor', 'Plate Number', 'Status', 'Created At'];
+      const columns = ['Driver Name', 'Iqama Number', 'Phone', 'Transporter', 'Plate Number', 'Status', 'Created At'];
       const data = drivers.map(d => [
         d.name,
         d.iqamaNumber,
@@ -140,7 +140,7 @@ const Reports = () => {
       const res = await api.get('/dispatch');
       const orders = filterDataByDate(res.data.data, 'loadingDate');
       
-      const columns = ['DN Number', 'Vendor', 'Driver', 'Material', 'Loading', 'Offloading', 'Status', 'Date'];
+      const columns = ['DN Number', 'Transporter', 'Driver', 'Material', 'Loading', 'Offloading', 'Status', 'Date'];
       const data = orders.map(o => [
         o.deliveryNoteNumber,
         o.assignedVendor?.name || 'N/A',
@@ -168,7 +168,7 @@ const Reports = () => {
       const filteredOrders = filterDataByDate(res.data.data, 'loadingDate');
       const orders = filteredOrders.filter(o => o.status !== 'Delivered');
       
-      const columns = ['DN Number', 'Vendor', 'Status', 'Loading From', 'Offloading To', 'Created At'];
+      const columns = ['DN Number', 'Transporter', 'Status', 'Loading From', 'Offloading To', 'Created At'];
       const data = orders.map(o => [
         o.deliveryNoteNumber,
         o.assignedVendor?.name || 'N/A',
@@ -255,8 +255,8 @@ const Reports = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <ReportCard 
-          title="Vendor Performance" 
-          description="Detailed analysis of delivery accuracy and timeline by vendor." 
+          title="Transporter Performance" 
+          description="Detailed analysis of delivery accuracy and timeline by transporter." 
           icon={Building2} 
           color="blue" 
           onPDF={exportVendorPerformance}

@@ -77,7 +77,7 @@ const VendorModal = ({ isOpen, onClose, vendor, onSave, loading }) => {
         <div className="p-8 border-b border-gray-100 dark:border-gray-800 flex justify-between items-center bg-gray-50/50 dark:bg-gray-800/50">
           <div>
             <h3 className="text-xl font-black text-primary dark:text-white uppercase tracking-tight">
-              {vendor ? 'Edit Vendor' : 'Add New Vendor'}
+              {vendor ? 'Edit Transporter' : 'Add New Transporter'}
             </h3>
             <p className="text-[10px] text-gray-400 font-black uppercase tracking-widest mt-1">Enterprise Partner Details</p>
           </div>
@@ -88,7 +88,7 @@ const VendorModal = ({ isOpen, onClose, vendor, onSave, loading }) => {
 
         <form onSubmit={handleSubmit} className="p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-1.5 md:col-span-2">
-            <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest px-1">Vendor Company Name</label>
+            <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest px-1">Transporter Company Name</label>
             <div className="relative">
               <Building2 className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
               <input type="text" required value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} className="w-full pl-12 pr-4 py-4 bg-gray-50/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-2xl text-sm font-bold text-primary dark:text-white focus:ring-2 focus:ring-accent outline-none transition-all" placeholder="e.g. Saudi Logistics Corp" />
@@ -117,7 +117,7 @@ const VendorModal = ({ isOpen, onClose, vendor, onSave, loading }) => {
           <div className="md:col-span-2 pt-4">
             <button type="submit" disabled={loading} className="w-full btn-primary py-5 font-black uppercase tracking-widest text-xs shadow-2xl shadow-primary/30 flex items-center justify-center gap-3 rounded-2xl hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50">
               {loading ? <Loader2 className="animate-spin" size={18} /> : <Save size={18} />}
-              {vendor ? 'Update Vendor' : 'Create Vendor'}
+              {vendor ? 'Update Transporter' : 'Create Transporter'}
             </button>
           </div>
         </form>
@@ -438,7 +438,7 @@ const VendorDetailsModal = ({ isOpen, onClose, vendorId }) => {
   );
 };
 
-const Vendors = () => {
+const Transporters = () => {
   const { t, i18n } = useTranslation();
   const { user } = useAuth();
   const [vendors, setVendors] = useState([]);
@@ -457,7 +457,7 @@ const Vendors = () => {
       const res = await api.get('/vendors');
       setVendors(res.data.data);
     } catch (error) {
-      console.error('Failed to fetch vendors');
+      console.error('Failed to fetch transporters');
     } finally {
       setLoading(false);
     }
@@ -479,7 +479,7 @@ const Vendors = () => {
   };
 
   const handleDelete = async (id) => {
-    if (!window.confirm('Delete this vendor?')) return;
+    if (!window.confirm('Delete this transporter?')) return;
     try {
       await api.delete(`/vendors/${id}`);
       fetchVendors();
@@ -490,7 +490,7 @@ const Vendors = () => {
 
   const exportPDF = async () => {
     try {
-      const columns = ['Vendor Name', 'Contact Person', 'Email', 'Phone', 'VAT Number', 'Status'];
+      const columns = ['Transporter Name', 'Contact Person', 'Email', 'Phone', 'VAT Number', 'Status'];
       const data = vendors.map(v => [
         v.name,
         v.contactPerson || 'N/A',
@@ -500,7 +500,7 @@ const Vendors = () => {
         v.status || 'Active'
       ]);
 
-      await generatePDFReport("All Vendors Report", columns, data, "Vendors_List_Report.pdf");
+      await generatePDFReport("All Transporters Report", columns, data, "Transporters_List_Report.pdf");
     } catch (error) {
       console.error(error);
       alert("Failed to export PDF");
@@ -513,8 +513,8 @@ const Vendors = () => {
     <div className="space-y-8 pb-20">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
         <div>
-          <h1 className="text-3xl font-black text-primary dark:text-white mb-2 tracking-tight uppercase">Logistics Partners</h1>
-          <p className="text-gray-500 dark:text-gray-400 font-medium">Manage and monitor enterprise vendor relationships.</p>
+          <h1 className="text-3xl font-black text-primary dark:text-white mb-2 tracking-tight uppercase">Transporter Partners</h1>
+          <p className="text-gray-500 dark:text-gray-400 font-medium">Manage and monitor enterprise transporter relationships.</p>
         </div>
         <div className="flex flex-wrap gap-4">
           <button 
@@ -525,7 +525,7 @@ const Vendors = () => {
           </button>
           {(user?.role === 'admin' || user?.role === 'super-admin') && (
             <button onClick={() => { setEditingVendor(null); setModalOpen(true); }} className="btn-primary px-8 py-4 rounded-2xl text-xs font-black uppercase tracking-widest shadow-2xl shadow-primary/30 flex items-center gap-2 hover:scale-[1.02] transition-all">
-              <Plus size={20} /> Add New Vendor
+              <Plus size={20} /> Add New Transporter
             </button>
           )}
         </div>
@@ -534,7 +534,7 @@ const Vendors = () => {
       <div className="glass-card p-6 flex items-center border border-gray-100 dark:border-gray-800">
         <div className="relative flex-1">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
-          <input type="text" placeholder="Search vendors by name or contact..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="w-full pl-12 pr-4 py-4 bg-gray-50/50 dark:bg-gray-800/50 border-none rounded-2xl text-sm font-bold text-primary dark:text-white focus:ring-2 focus:ring-accent outline-none" />
+          <input type="text" placeholder="Search transporters by name or contact..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="w-full pl-12 pr-4 py-4 bg-gray-50/50 dark:bg-gray-800/50 border-none rounded-2xl text-sm font-bold text-primary dark:text-white focus:ring-2 focus:ring-accent outline-none" />
         </div>
       </div>
 
@@ -582,4 +582,4 @@ const Vendors = () => {
   );
 };
 
-export default Vendors;
+export default Transporters;

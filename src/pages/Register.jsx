@@ -45,7 +45,7 @@ const Register = () => {
           <div>
             <div className="w-12 h-12 bg-primary rounded-2xl flex items-center justify-center text-white font-bold text-2xl mb-6 shadow-xl shadow-primary/20">S</div>
             <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2 tracking-tight">Create Account</h1>
-            <p className="text-gray-500 dark:text-gray-400">Join the Smart Vendor Portal</p>
+            <p className="text-gray-500 dark:text-gray-400">Join the Smart Transporter Portal</p>
           </div>
           <button className="flex items-center gap-2 text-xs font-bold text-gray-500 hover:text-primary transition-colors uppercase tracking-widest">
             <Globe size={14} /> Arabic

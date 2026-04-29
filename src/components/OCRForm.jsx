@@ -173,7 +173,7 @@ const OCRForm = ({ initialData, onSave, onReRun, onDownload }) => {
     { id: 2, label: "Driver Contact #", name: "driverContactNumber", icon: Phone },
     { id: 3, label: "Vehicle Plate #", name: "vehiclePlateNumber", icon: Truck },
     { id: 4, label: "Driver Iqama #", name: "driverIqamaNumber", icon: CreditCard },
-    { id: 5, label: "Vendor Name", name: "vendorName", icon: Building },
+    { id: 5, label: "Transporter Name", name: "vendorName", icon: Building },
     { id: 6, label: "Loading Date/Time", name: "loadingDateTime", icon: Calendar, type: "date" },
     { id: 7, label: "Loading Location (From)", name: "loadingFrom", icon: MapPin },
     { id: 8, label: "Off Loading Location (To)", name: "offloadingTo", icon: MapPin },
@@ -259,23 +259,23 @@ const OCRForm = ({ initialData, onSave, onReRun, onDownload }) => {
               </select>
             </div>
             <div className="space-y-1.5">
-              <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest px-1">Pickup Vendor</label>
+              <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest px-1">Pickup Transporter</label>
               <select {...register('pickupVendor')} className="w-full px-4 py-3.5 bg-gray-50/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl text-sm font-bold outline-none focus:ring-2 focus:ring-accent">
-                <option value="">Select Pickup Vendor</option>
+                <option value="">Select Pickup Transporter</option>
                 {vendors.map(v => <option key={v._id} value={v._id}>{v.name}</option>)}
               </select>
             </div>
             <div className="space-y-1.5">
-              <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest px-1">Delivery Vendor</label>
+              <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest px-1">Delivery Transporter</label>
               <select {...register('deliveryVendor')} className="w-full px-4 py-3.5 bg-gray-50/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl text-sm font-bold outline-none focus:ring-2 focus:ring-accent">
-                <option value="">Select Delivery Vendor</option>
+                <option value="">Select Delivery Transporter</option>
                 {vendors.map(v => <option key={v._id} value={v._id}>{v.name}</option>)}
               </select>
             </div>
             <div className="space-y-1.5">
               <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest px-1">Assigned Driver</label>
               <select {...register('assignedDriver')} disabled={!selectedPickupVendor} className="w-full px-4 py-3.5 bg-gray-50/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl text-sm font-bold outline-none focus:ring-2 focus:ring-accent disabled:opacity-50">
-                <option value="">{selectedPickupVendor ? 'Select Driver' : 'Select Vendor First'}</option>
+                <option value="">{selectedPickupVendor ? 'Select Driver' : 'Select Transporter First'}</option>
                 {drivers.map(d => <option key={d._id} value={d._id}>{d.name} ({d.iqamaNumber})</option>)}
               </select>
             </div>

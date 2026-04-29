@@ -84,9 +84,9 @@ const VehicleModal = ({ isOpen, onClose, vehicle, onSave, vendors, drivers, load
             <input type="text" required value={formData.type} onChange={(e) => setFormData({...formData, type: e.target.value})} className="w-full px-4 py-4 bg-gray-50/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-2xl text-sm font-bold text-primary dark:text-white focus:ring-2 focus:ring-accent outline-none transition-all" placeholder="e.g. Heavy Truck" />
           </div>
           <div className="space-y-1.5">
-            <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest px-1">Logistics Vendor</label>
+            <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest px-1">Logistics Transporter</label>
             <select required value={formData.vendor} onChange={(e) => setFormData({...formData, vendor: e.target.value})} className="w-full px-4 py-4 bg-gray-50/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-2xl text-sm font-bold text-primary dark:text-white focus:ring-2 focus:ring-accent outline-none appearance-none">
-              <option value="">Select Vendor</option>
+              <option value="">Select Transporter</option>
               {vendors.map(v => <option key={v._id} value={v._id}>{v.name}</option>)}
             </select>
           </div>
@@ -187,7 +187,7 @@ const Vehicles = () => {
 
   const exportPDF = async () => {
     try {
-      const columns = ['Plate Number', 'Type', 'Vendor', 'Driver', 'Insurance Expiry', 'Status'];
+      const columns = ['Plate Number', 'Type', 'Transporter', 'Driver', 'Insurance Expiry', 'Status'];
       const data = vehicles.map(v => [
         v.plateNumber,
         v.type,

@@ -131,9 +131,9 @@ const DriverModal = ({ isOpen, onClose, driver, onSave, vendors, loading }) => {
             <input type="text" required value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} className="w-full px-4 py-4 bg-gray-50/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-2xl text-sm font-bold text-primary dark:text-white focus:ring-2 focus:ring-accent outline-none transition-all" placeholder="+966..." />
           </div>
           <div className="space-y-1.5">
-            <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest px-1">Assign Vendor</label>
+            <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest px-1">Assign Transporter</label>
             <select required value={formData.vendor} onChange={(e) => setFormData({...formData, vendor: e.target.value})} className="w-full px-4 py-4 bg-gray-50/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-2xl text-sm font-bold text-primary dark:text-white focus:ring-2 focus:ring-accent outline-none transition-all appearance-none">
-              <option value="">Select Vendor</option>
+              <option value="">Select Transporter</option>
               {vendors.map(v => <option key={v._id} value={v._id}>{v.name}</option>)}
             </select>
           </div>
@@ -233,7 +233,7 @@ const DriverPassModal = ({ isOpen, onClose, driverId }) => {
         ['Driver Name', driver.name],
         ['Iqama Number', driver.iqamaNumber],
         ['Phone', driver.phone],
-        ['Vendor', driver.vendor?.name || 'N/A'],
+        ['Transporter', driver.vendor?.name || 'N/A'],
         ['License Expiry', driver.licenseExpiry ? new Date(driver.licenseExpiry).toLocaleDateString() : 'N/A'],
         ['Vehicle Plate', driver.vehiclePlateNumber || 'N/A'],
         ['Status', driver.status || 'Active']

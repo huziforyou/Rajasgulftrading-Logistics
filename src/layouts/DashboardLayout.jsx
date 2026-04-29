@@ -69,7 +69,7 @@
 
 //   const navLinks = [
 //   { to: '/', icon: LayoutDashboard, label: i18n.language === 'ar' ? 'لوحة التحكم' : 'Dashboard', permission: true }, // Sab ke liye
-//   { to: '/vendors', icon: Box, label: i18n.language === 'ar' ? 'الموردين' : 'Vendors', permission: user?.permissions?.viewVendors },
+//   { to: '/vendors', icon: Box, label: i18n.language === 'ar' ? 'الناقلين' : 'Transporters', permission: user?.permissions?.viewVendors },
 //   { to: '/drivers', icon: Truck, label: i18n.language === 'ar' ? 'السائقين' : 'Drivers', permission: user?.permissions?.viewDrivers },
 //   { to: '/dispatch', icon: ClipboardList, label: i18n.language === 'ar' ? 'أوامر الإرسال' : 'Dispatch Orders', permission: user?.permissions?.viewVendors || user?.permissions?.createDispatch },
 //   { to: '/vehicles', icon: Layers, label: i18n.language === 'ar' ? 'المركبات' : 'Vehicles', permission: user?.permissions?.viewDrivers },
@@ -899,10 +899,9 @@ const DashboardLayout = ({ children }) => {
 
   const navLinks = [
     { to: '/', icon: LayoutDashboard, label: i18n.language === 'ar' ? 'لوحة التحكم' : 'Dashboard', permission: true },
-    { to: '/vendors', icon: Box, label: i18n.language === 'ar' ? 'الموردين' : 'Vendors', permission: user?.permissions?.viewVendors },
+    { to: '/vendors', icon: Box, label: i18n.language === 'ar' ? 'الناقلين' : 'Transporter', permission: user?.permissions?.viewVendors },
     { to: '/drivers', icon: Truck, label: i18n.language === 'ar' ? 'السائقين' : 'Drivers', permission: user?.permissions?.viewDrivers },
     { to: '/dispatch', icon: ClipboardList, label: i18n.language === 'ar' ? 'أوامر الإرسال' : 'Dispatch Orders', permission: user?.permissions?.viewVendors || user?.permissions?.createDispatch || user?.permissions?.editDispatch },
-    { to: '/inventory', icon: Package, label: i18n.language === 'ar' ? 'المخزون' : 'Inventory', permission: true },
     { to: '/vehicles', icon: Layers, label: i18n.language === 'ar' ? 'المركبات' : 'Vehicles', permission: user?.permissions?.viewDrivers },
     { to: '/reports', icon: FileText, label: i18n.language === 'ar' ? 'التقارير' : 'Reports', permission: user?.permissions?.viewReports },
     { to: '/users', icon: Users, label: i18n.language === 'ar' ? 'المستخدمين' : 'Users', permission: user?.role === 'super-admin' || user?.role === 'admin' },

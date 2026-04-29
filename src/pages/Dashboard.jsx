@@ -135,9 +135,9 @@
 //       </div>
 
 //       {/* Stats Grid */}
-//       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
-//         <StatCard title="Total Vendors" value={stats.vendors} icon={Building2} color="blue" trend="up" trendValue="+2" />
-//         <StatCard title="Total Drivers" value={stats.drivers} icon={Truck} color="purple" trend="up" trendValue="+5" />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
+        <StatCard title="Total Transporters" value={stats.vendors} icon={Building2} color="blue" trend="up" trendValue="+2" />
+        <StatCard title="Total Drivers" value={stats.drivers} icon={Truck} color="purple" trend="up" trendValue="+5" />
 //         <StatCard title="Active Jobs" value={stats.active} icon={TrendingUp} color="accent" />
 //         <StatCard title="Completed" value={stats.completed} icon={CheckCircle2} color="green" trend="up" trendValue="+12%" />
 //         <StatCard title="Pending" value={stats.pending} icon={Clock} color="amber" />
@@ -377,7 +377,12 @@ const Dashboard = () => {
   const { i18n } = useTranslation();
   const { user } = useAuth();
   const [stats, setStats] = useState({
-    vendors: 0, drivers: 0, active: 0, completed: 0, pending: 0, vehicles: 0
+    vendors: 0,
+    drivers: 0,
+    active: 0,
+    completed: 0,
+    pending: 0,
+    vehicles: 0
   });
   const [recentDispatches, setRecentDispatches] = useState([]);
   const [realChartData, setRealChartData] = useState([]); // <--- Dynamic Chart State
@@ -488,7 +493,7 @@ const Dashboard = () => {
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
-        <StatCard title="Total Vendors" value={stats.vendors} icon={Building2} color="blue" />
+        <StatCard title="Total Transporters" value={stats.vendors} icon={Building2} color="blue" />
         <StatCard title="Total Drivers" value={stats.drivers} icon={Truck} color="purple" />
         <StatCard title="Active Jobs" value={stats.active} icon={TrendingUp} color="blue" />
         <StatCard title="Completed" value={stats.completed} icon={CheckCircle2} color="green" />

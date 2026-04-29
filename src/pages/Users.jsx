@@ -170,7 +170,7 @@ const UserModal = ({ isOpen, onClose, user, onSave, loading }) => {
                   <option value="super-admin">Super Admin (Root Access)</option>
                   <option value="admin">System Admin</option>
                   <option value="viewer">Data Viewer</option>
-                  <option value="vendor">Vendor User</option>
+                  <option value="vendor">Transporter User</option>
                 </select>
               </div>
             </div>
@@ -181,7 +181,7 @@ const UserModal = ({ isOpen, onClose, user, onSave, loading }) => {
               <Shield size={16} className="text-accent" /> Permission Matrix
             </h4>
             <div className="grid grid-cols-1 gap-3">
-              <PermissionItem icon={Building2} label="View Vendors" description="Access to vendor list and profiles" checked={permissions.viewVendors} onChange={() => setPermissions({...permissions, viewVendors: !permissions.viewVendors})} />
+              <PermissionItem icon={Building2} label="View Transporters" description="Access to transporter list and profiles" checked={permissions.viewVendors} onChange={() => setPermissions({...permissions, viewVendors: !permissions.viewVendors})} />
               <PermissionItem icon={Truck} label="View Drivers" description="Access to fleet driver management" checked={permissions.viewDrivers} onChange={() => setPermissions({...permissions, viewDrivers: !permissions.viewDrivers})} />
               <PermissionItem icon={PlusCircle} label="Create Dispatch" description="Authority to issue new delivery notes" checked={permissions.createDispatch} onChange={() => setPermissions({...permissions, createDispatch: !permissions.createDispatch})} />
               <PermissionItem icon={ClipboardList} label="Edit Dispatch" description="Modify active or pending orders" checked={permissions.editDispatch} onChange={() => setPermissions({...permissions, editDispatch: !permissions.editDispatch})} />
