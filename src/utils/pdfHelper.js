@@ -237,8 +237,7 @@ export const generateDetailedDispatchOrderPDF = async (order, filename) => {
   }
 
   if (order.status === 'Delivered') {
-    details.push([formatArabicText("Received Qty:"), formatArabicText(order.receivedQuantity || '0')]);
-    details.push([formatArabicText("Qty Status:"), formatArabicText(`${order.quantityStatus} (Diff: ${order.quantityDifference || '0'})`)]);
+    details.push([formatArabicText("Qty:"), formatArabicText(order.materialQuantity || '0')]);
     details.push([formatArabicText("Delivered At:"), formatArabicText(`${new Date(order.deliveredDate).toLocaleDateString()} ${order.deliveredTime || ''}`)]);
     details.push([formatArabicText("Notes:"), formatArabicText(order.deliveryNotes || 'No notes')]);
   }
